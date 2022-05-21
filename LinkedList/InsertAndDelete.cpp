@@ -2,7 +2,7 @@
 using namespace std;
 #include "Node.cpp"
 
-// Indert a node at the ith position of the linked list
+// Insert a node at the ith position of the linked list
 Node* insertNode(Node *head,int i,int data){
     Node* newNode = new Node(data);
     int count=0;
@@ -22,6 +22,23 @@ Node* insertNode(Node *head,int i,int data){
         temp->next = newNode;
         newNode->next=a;    
     }
+    return head;
+}
+// Delete the node at the ith position.
+Node* deleteNode(Node* head,int i){
+    int count=0;
+    Node* temp=head;
+    if(i==0){
+        head = head->next;
+        return head;
+    }
+    while(count<i-1 && temp->next->next!=NULL){
+        temp = temp->next;
+        count++;
+    }
+    Node* a = temp->next->next;
+    delete( temp->next);
+    temp->next=a;
     return head;
 }
 
@@ -56,13 +73,13 @@ void print(Node* head){
     cout<<endl;
 }
 
-int main()
-{   
-    Node* head = takeInput_Better();
-    print(head);
-    int i,data;
-    cin>>i>>data;
-    head=insertNode(head,i,data);
-    print(head);
-    return 0;
-}
+// int main()
+// {   
+//     Node* head = takeInput_Better();
+//     print(head);
+//     int i,data;
+//     cin>>i>>data;
+//     head=insertNode(head,i,data);
+//     print(head);
+//     return 0;
+// }

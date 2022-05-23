@@ -60,6 +60,17 @@ void printRec(Node* head){
     cout<<a->data<<" ";
 }
 
+Node* reverseRec(Node* head){
+    if(head==NULL || head->next ==NULL){
+        return head;
+    }
+    Node* smallAns = reverseRec(head->next);
+    Node* tail = head->next;
+    tail->next=head;
+    head->next=NULL:
+    return smallAns;
+}
+
 // int main()
 // {
 //     Node* head = takeInput_Better();

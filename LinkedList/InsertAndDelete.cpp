@@ -64,6 +64,12 @@ Node* takeInput_Better(){
     return head;
 }
 
+//Code concept for swapping node:
+// 1st case: i==0 or j==0
+// 2nd case : i-j==1 i.e. the nodes are adjascent to each other
+// 3rd case: i==0 and i-j==1 
+// 4th case: general condition 
+
 
 // int main()
 // {   

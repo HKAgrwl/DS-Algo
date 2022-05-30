@@ -71,6 +71,39 @@ Node* reverseRec(Node* head){
     return smallAns;
 }
 
+Node* reverseLL(Node* head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    Node* smallAns = reverseLL(head->next);
+    Node* temp = smallAns;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next = head;
+    head->next=NULL;
+    return smallAns;
+}
+
+Node* reverseLLBetter(Node* head){
+    if(head==NULL || head->next==NULL){
+        return head;
+    }
+    Node* smallAns = reverseLLBetter(head->next);
+    Node* tail = head->next;
+    tail->next=head;
+    head->next=NULL;
+    return smallAns;
+}
+
+//k-reverse
+void kReverse(Node* head,int k){
+    
+} 
+
+
+
+
 // int main()
 // {
 //     Node* head = takeInput_Better();

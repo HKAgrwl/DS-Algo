@@ -5,18 +5,32 @@ using namespace std;
 void EvenAfterOdd(Node* head){
     Node* temp=head;
     while(temp!=NULL){
-        Node *prev = NULL;
+        Node *prev = new Node(0);
         Node *current = head;
+        prev->next=current;
         Node *after = current->next;
-        while(current!=NULL){
+        while(after!=NULL){
             if(((current->data)%2==0) && ((after->data)%2!=0)){
-                after->next=current;
+                // cout<<prev->data<<endl; 
+                // cout<<current->data<<endl;
+                // cout<<after->data<<endl;
+                Node* a = after->next;
+                after->next=current; 
                 prev->next=after;
-                current->next=after->next;
-            } 
-            prev=prev->next;
-            current=current->next;
-            after=after->next;
+                current->next=a;
+                prev=after;
+                after = current->next;
+                // cout<<prev->data<<endl;
+                // cout<<current->data<<endl;
+                // cout<<after->data<<endl;
+            }else{
+                prev=prev->next;
+                current=current->next;
+                after=after->next;
+                // cout<<prev->data<<endl;
+                // cout<<current->data<<endl;
+                // cout<<after->data<<endl;
+            }
         }
         temp=temp->next;
     }

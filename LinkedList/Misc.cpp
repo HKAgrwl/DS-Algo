@@ -74,6 +74,35 @@ Node* takeInput_Better(){
 //     }
 //     temp->next=NULL;
 // }
+Node* func(Node* head,int value){
+    Node* head1 = NULL;
+    Node* tail1 = NULL;
+    Node* head2 = NULL;
+    Node* tail2 = NULL;
+    while(head!=NULL){
+        if(head->data <  value){
+            if(head1==NULL){
+                head1 = head;
+                tail1 = head1->next;
+            }else{
+                tail1 = head;
+                tail1 = tail1->next;
+            }
+            head = head->next;
+        }else{
+            if(head2==NULL){
+                head2 = head;
+                tail2 = head2->next;
+            }else{
+                tail2 = head;
+                tail2 = tail2->next;
+            }
+        }
+    }
+    tail1->next = head2;
+    return head1;
+}
+
 
 int main(){
     Node* head = takeInput_Better();

@@ -1,35 +1,26 @@
 #include <iostream>
-#include <climits>
 using namespace std;
+template <typename T>
 
-
-// Stacks os an abstract datatype
-class StackUsingArray{
-    int* data;
+class StackUsingTemplate{
+    T* data;
     int nextIndex;
     int capacity;
 
     public:
-    StackUsingArray(){
-        data = new int[4];
-        nextIndex = 0;
-        capacity= 4;
-    }
-
-    // return the number of elemnts present in the class
-    int size(){
-        return nextIndex;
+    StackUsingTemplate(){
+        data = new T[4];
+        nextIndex=0;
+        capacity=4;
     }
 
     bool isEmpty(){
         return nextIndex==0;
     }
 
-    // insert element
-    void push(int element){
+    void push(T element){
         if(nextIndex==capacity){
-            // cout<<"Stack overflow"<<endl;
-            int* newData = new int[capacity*2];
+            T* newData = new T[capacity*2];
             for (int i = 0; i < capacity; i++)
             {
                 newData[i]=data[i];
@@ -38,28 +29,39 @@ class StackUsingArray{
             capacity*=2;
             delete[] data;
             data = newData;
-            
         }
         data[nextIndex] = element;
         nextIndex++;
     }
-
-    // delete element
-    int pop(){
+    T pop(){
         if(isEmpty()){
             cout<<"Stack is empty"<<endl;
-            return INT_MIN;
+            return 0;
         }
         nextIndex--;
         return data[nextIndex]; 
     }
-
-    // access topmost element
-    int top(){
+    T top(){
         if(isEmpty()){
             cout<<"Stack is empty"<<endl;
-            return INT_MIN;
+            return 0;
         }
         return data[nextIndex-1];
     }
 };
+
+
+int main()
+{
+    StackUsingTemplate<char> s;
+    s.push(100);//this integer is now treated as an ASCII value.
+    s.push(101);
+    s.push(102);
+    s.push(103);
+    s.push(104);
+    cout<<s.top()<<endl;
+    cout<<s.pop()<<endl;
+    cout<<s.pop()<<endl;
+    // cout<<s.size()<<endl;
+    return 0;
+}

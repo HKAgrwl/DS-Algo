@@ -41,7 +41,7 @@ class QueueUsingArrays{
         first = (first+1)%capacity;
         size--;
         if(size==0){
-            firstIndex = 0 ;
+            first= 0 ;
             nextIndex=0;
         }
         }
@@ -56,20 +56,20 @@ class QueueUsingArrays{
     }
 };
 
-int main()
-{
-    QueueUsingArrays<int> q(4);
-    q.enQueue(32);
-    q.enQueue(72);
-    q.enQueue(43);
-    q.enQueue(96);
-    q.deQueue();
-    cout<<q.top()<<endl;
-    q.deQueue();
-    q.deQueue();
-    cout<<q.isEmpty()<<endl;
-    q.deQueue();
-    cout<<q.isEmpty()<<endl;
-    return 0;
-}
+// int main()
+// {
+//     QueueUsingArrays<int> q(4);
+//     q.enQueue(32);
+//     q.enQueue(72);
+//     q.enQueue(43);
+//     q.enQueue(96);
+//     q.deQueue();
+//     cout<<q.top()<<endl;
+//     q.deQueue();
+//     q.deQueue();
+//     cout<<q.isEmpty()<<endl;
+//     q.deQueue();
+//     cout<<q.isEmpty()<<endl;
+//     return 0;
+// }
 // Unable to understand circular queue.

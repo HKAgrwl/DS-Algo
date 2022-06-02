@@ -6,35 +6,45 @@ class QueueUsingArrays{
     T* data;
     int first;
     int nextIndex;
+    int size;
     int capacity;
 
     public:
-    QueueUsingArrays(int size){
+    QueueUsingArrays(int s){
         data = new T[size];
         first=0; 
         nextIndex=0;
-        capacity = size;
+        size=0;
+        capacity=s;
     }
-    int size(){
-        return nextIndex;
+    int getSize(){
+        return size;
     }
 
     bool isEmpty(){
-        return first>=nextIndex;
+        return size==0 ;
     }
     void enQueue(T element){
-        if(nextIndex==capacity){
-            cout<<"Stack Overflow";
+        if(size==capacity){
+            cout<<"Queue is Full"<<endl;
+            return; 
         }
         data[nextIndex] = element;
-        nextIndex++;
+        nextIndex = (nextIndex+1)%capacity;
+        size++;
     }
 
     void deQueue(){
         if(isEmpty()){
             cout<<"Stack is empty"<<endl;
+        }else{
+        first = (first+1)%capacity;
+        size--;
+        if(size==0){
+            firstIndex = 0 ;
+            nextIndex=0;
         }
-        first++;
+        }
 
     }
     T top(){
@@ -62,3 +72,4 @@ int main()
     cout<<q.isEmpty()<<endl;
     return 0;
 }
+// Unable to understand circular queue.

@@ -2,7 +2,17 @@
 using namespace std;
 #include "UsingArray.cpp"
 // using inbuilt stack
-#include <stack>
+// #include <stack>
+
+// code to reverse a stack using only one extra stack
+void reverseStack(int arr[],int size,x){
+    if(size==1){
+        x.push(arr[0]);
+        return;
+    }
+    reverseStack(arr,size-1);
+    x.push(arr[size-1]);
+}
 
 int main()
 {
@@ -28,4 +38,5 @@ int main()
     // cout<<s.size()<<endl;
     // cout<<s.isEmpty()<<endl;
     // return 0;
+    
 }

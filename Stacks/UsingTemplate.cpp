@@ -62,6 +62,13 @@ int main()
     cout<<s.top()<<endl;
     cout<<s.pop()<<endl;
     cout<<s.pop()<<endl;
+    cout<<s.isEmpty()<<endl;
+    cout<<s.pop()<<endl;
+    cout<<s.isEmpty()<<endl;
+    cout<<s.pop()<<endl;
+    cout<<s.isEmpty()<<endl;
+    cout<<s.pop()<<endl;
+    cout<<s.isEmpty()<<endl;
     // cout<<s.size()<<endl;
     return 0;
 }

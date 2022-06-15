@@ -30,7 +30,6 @@ int main()
 
     vector<int> v2 (3,50);
     // output vector: 50 50 50
-
     swap(v,v2);//swaps the values of va nd v2 at each corrsponding index.
 
     // sort(v.begin(),v.end());

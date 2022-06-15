@@ -3,112 +3,38 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-using namespace std;
+using namespace std;	
+#include <vector>
+#include <stack>
 
-class Node
-{
-public:
-    int data;
-    Node *next;
 
-    Node(int value)
-    {
-        data = value;
-        next = NULL;
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    vector<int> v;
+    int a;
+    int len=0;
+    while(cin>>a){
+        v.push_back(a);
+        len++;
     }
-};
-
-Node *insertTail(Node *head, int data)
-{
-    Node *newNode = new Node(data);
-    if (head == NULL)
-    {
-        head = newNode;
-        return head;
-    }
-    else
-    {
-        Node *temp = head;
-        while (temp->next != NULL)
-        {
-            temp = temp->next;
+    stack<int> interim;
+    int ans[len];
+    int i=len-1;
+    int count;
+    vector<int>::iterator it;
+    for(it=v.end();it!=v.begin();it--){
+        count=0;
+        while(!interim.empty() && interim.top() < *it){
+            interim.pop();
+            count++;
         }
-        temp->next = newNode;
+        ans[i]=count;
+        interim.push(*it);
+        cout<<ans[i]<<endl;
+        i--;
     }
-    return head;
-}
-
-Node *merge(Node *head1, Node *head2)
-{
-    Node *temp1 = head1;
-    Node *temp2 = head2;
-    Node *head = NULL;
-    if (head1->data > head2->data)
-    {
-        head = head1;
-    }
-    else
-    {
-        head = head2;
-    }
-    Node *temp = head;
-    while (temp1 != NULL && temp2 != NULL)
-    {
-        if (temp1->data < temp2->data)
-        {
-            temp->next = temp1;
-            temp1 = temp1->next;
-        }
-        else
-        {
-            temp->next = temp2;
-            temp2 = temp2->next;
-        }
-        temp = temp->next;
-    }
-    return head;
-}
-
-void print(Node *head)
-{
-    Node *temp = head;
-    while (temp != NULL)
-    {
-        cout << temp->data << "->";
-        temp = temp->next;
-    }
-    cout << endl;
-}
-
-int main()
-{
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        Node *head1 = NULL;
-        for (int j = 0; j < x; j++)
-        {
-            int data;
-            cin >> data;
-            head1 = insertTail(head1, data);
-        }
-        int y;
-        cin >> y;
-        Node *head2 = NULL;
-        for (int j = 0; j < y; j++)
-        {
-            int dat;
-            cin >> dat;
-            head2 = insertTail(head2, dat);
-        }
-        print(head1);
-        print(head2);
-        Node *head = merge(head1, head2);
-        print(head);
+    for(int j=0;j<len;j++){
+        cout<<ans[j]<<" ";
     }
     return 0;
 }

@@ -110,3 +110,22 @@ int main(){
     EvenAfterOdd(head);
     print(head);
 }
+
+/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    string str;
+    getline(cin,str);
+    int len = str.length();
+    for(int i=0;i<len;i++){
+        int count=0;
+        int valid=1;
+        if(str[i]=='a' || str[i]=='e' || str[i]=='i' || str[i]=='o' || str[i]=='u'){
+            valid=0;
+        }
+        if(str[i] ==' ' && valid == 1){
+            count++;
+        }
+    }
+    cout<<count;
+    return 0;
+
+    

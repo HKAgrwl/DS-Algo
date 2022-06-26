@@ -1,40 +1,42 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
 #include <iostream>
-#include <algorithm>
-using namespace std;	
-#include <vector>
-#include <stack>
+using namespace std;
 
-
-int main() {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
-    vector<int> v;
-    int a;
-    int len=0;
-    while(cin>>a){
-        v.push_back(a);
-        len++;
-    }
-    stack<int> interim;
-    int ans[len];
-    int i=len-1;
-    int count;
-    vector<int>::iterator it;
-    for(it=v.end();it!=v.begin();it--){
-        count=0;
-        while(!interim.empty() && interim.top() < *it){
-            interim.pop();
-            count++;
-        }
-        ans[i]=count;
-        interim.push(*it);
-        cout<<ans[i]<<endl;
-        i--;
-    }
-    for(int j=0;j<len;j++){
-        cout<<ans[j]<<" ";
-    }
-    return 0;
+int main()
+{
+	int t;
+	cin >> t;
+	for (int i = 0; i < t; i++)
+	{
+		int n, k;
+		cin >> n >> k;
+		int arr[n];
+		for (int j = 0; j < n; j++)
+			cin >> arr[i];
+		int distinctFlav = 0;
+		int l = 0, r = 0;
+		int ans;
+		int max = 0;
+		while (l < n)
+		{	
+			ans=0;
+			distinctFlav=0;
+			r=l+1;	
+			while (r < n && distinctFlav < k)
+			{
+				if (arr[r] != arr[r - 1])
+				{
+					distinctFlav++;
+				}
+				ans++;
+				r++;
+			}
+			if (ans > max)
+			{
+				max = ans;
+			}
+			l++;
+		}
+		cout<<max<<endl;
+	}
+	return 0;
 }

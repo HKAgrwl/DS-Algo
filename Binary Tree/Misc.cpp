@@ -51,9 +51,9 @@ void preOrderTraversal(BinaryTreeNode<int>* root){
     if(root==NULL){
         return;
     }
-    cout<<root->data<<" ";
     preOrderTraversal(root->left);
     preOrderTraversal(root->right);
+    cout<<root->data<<" ";
 }
 
 int height(BinaryTreeNode<int>* root){
@@ -86,17 +86,18 @@ void Inorder(BinaryTreeNode<int>* root){
 
 int search(int arr[],int start,int end, int value){
     int i;
-    for(int i=start,i<end;i++){
+    for(int i=start;i<=end;i++){
         if(arr[i]==value){
             return i;
         }
     }
+    return -1;
 }
 
 BinaryTreeNode<int>* buildTree(int inorder[], int preorder[], int inStart, int inEnd){
     static int preIndex=0;
      if(inStart> inEnd){
-        return NULL:
+        return NULL;
      }
 
     BinaryTreeNode<int>* root = new BinaryTreeNode<int>(preorder[preIndex++]);
@@ -109,6 +110,8 @@ BinaryTreeNode<int>* buildTree(int inorder[], int preorder[], int inStart, int i
 
     root->left = buildTree(inorder,preorder,inStart,inIndex-1);
     root->right = buildTree(inorder,preorder,inIndex+1,inEnd);
+
+    return root;
 }
 
 pair<int,int> heightDiameter(BinaryTreeNode<int>* root){
@@ -134,6 +137,42 @@ pair<int,int> heightDiameter(BinaryTreeNode<int>* root){
 
     return p;
 }
+
+pair<bool,int> isBalanced(BinaryTreeNode<int>* root){
+    if(root==NULL){
+        pair<bool,int> p;
+        p.first = false;
+        p.second = 0;
+        return p;
+    }
+    pair<bool,int> leftAns = isBalanced(root->left);
+    pair<bool,int> rightAns = isBalanced(root->right);
+    pair<bool,int> p;
+    p.second = leftAns.second + rightAns.second;
+    if((leftAns.second - rightAns.second <=1 || rightAns.second - leftAns.second<=1) && leftAns.first && rightAns.first){
+        p.first = true;
+    }else{
+        p.first = false;
+    } 
+    return p;
+}
+
+BinaryTreeNode<int>* removeLeaf(BinaryTreeNode<int>* root){
+    if(root==NULL){
+        return NULL;
+    }
+    if(root->left==NULL && root->right==NULL){
+        root = NULL;
+        return root;
+    }
+    root->left = removeLeaf(root->left);
+    root->right = removeLeaf(root->right);
+
+    return root;
+
+}
+
+
 int main()
 {   
     // int n;
@@ -143,6 +182,8 @@ int main()
     // mirror(root);
     // printTree(root);
     // cout<<findNode(root,n);
-    Inorder(root);
+    // Inorder(root);
+    pair<bool,int> p = isBalanced(root);
+    cout<<p.first;
     return 0;
 }

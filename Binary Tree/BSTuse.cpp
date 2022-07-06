@@ -31,17 +31,17 @@ void printTree(BinaryTreeNode<int>* root){
     printTree(root->right);
 }
 
-int main()
-{
-    int n;
-    cin>>n;
-    BinaryTreeNode<int>* root = NULL;
-    for (int i = 0; i < n; i++)
-    {
-        int a;
-        cin>>a;
-        root = createBST(root,a);
-    }
+// int main()
+// {
+//     int n;
+//     cin>>n;
+//     BinaryTreeNode<int>* root = NULL;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int a;
+//         cin>>a;
+//         root = createBST(root,a);
+//     }
        
-    return 0;
-}
+//     return 0;
+// }

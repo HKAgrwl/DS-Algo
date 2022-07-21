@@ -4,11 +4,11 @@ using namespace std;
 
 BinaryTreeNode<int>* createBST(BinaryTreeNode<int>* root,int val){
     if(root==NULL){
-        BinaryTreeNode<int>* rootNode = new BinaryTreeNode<int>*(val);
+        BinaryTreeNode<int>* rootNode = new BinaryTreeNode(val);
         return rootNode;
     }
     if(val>root->data){
-        root->right = (root->right,val);
+        root->right = createBST(root->right,val);
     }else{
         root->left = createBST(root->left,val);
     }

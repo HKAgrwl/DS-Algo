@@ -11,25 +11,16 @@ void EvenAfterOdd(Node* head){
         Node *after = current->next;
         while(after!=NULL){
             if(((current->data)%2==0) && ((after->data)%2!=0)){
-                // cout<<prev->data<<endl; 
-                // cout<<current->data<<endl;
-                // cout<<after->data<<endl;
                 Node* a = after->next;
                 after->next=current; 
                 prev->next=after;
                 current->next=a;
                 prev=after;
                 after = current->next;
-                // cout<<prev->data<<endl;
-                // cout<<current->data<<endl;
-                // cout<<after->data<<endl;
             }else{
                 prev=prev->next;
                 current=current->next;
                 after=after->next;
-                // cout<<prev->data<<endl;
-                // cout<<current->data<<endl;
-                // cout<<after->data<<endl;
             }
         }
         temp=temp->next;

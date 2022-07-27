@@ -19,7 +19,13 @@ int main()
 
     // Check Presence
     if(ourMap.count("ghi")>0){
-        
+        cout<<"ghi is present"<<endl;
     }
+
+    // Get Size
+    cout<<"size : "<<ourMap.size()<<endl;
+
+    // erase
+    ourMap.erase("ghi");
     return 0;
 }

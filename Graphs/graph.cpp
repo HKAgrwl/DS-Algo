@@ -1,8 +1,9 @@
 #include <iostream>
 using namespace std;
+#include <queue> 
 
 // DFS traversal
-void print(int** edges,int n,int sv,bool* visited){
+void printDFS(int** edges,int n,int sv,bool* visited){
     cout<<sv<<endl;
     visited[sv]=true;
     for(int i=0;i<n;i++){
@@ -13,9 +14,35 @@ void print(int** edges,int n,int sv,bool* visited){
             if(visited[i]){
                 continue;
             }
-            print(edges,n,i,visited);
+            printDFS(edges,n,i,visited);
         }
     }
+}
+
+// BFS traversal
+void printBFS(int** edges,int n,int sv,bool* visited){
+    queue<int> pendingNodes;
+    pendingNodes.push(sv);
+    visited[sv]=true;
+    while(!pendingNodes.empty()){
+        int x = pendingNodes.front();
+        cout<<x<<" ";
+        pendingNodes.pop();
+        for(int i=0;i<n;i++){
+            if(i==x){
+                continue;
+            }
+            if(edges[x][i]==1){
+                if(visited[i]){
+                    continue;
+                }
+                pendingNodes.push(i);
+                visited[i]=true;
+            }
+        }
+    }
+
+
 }
 
 // Adjascency Matrix Approach
@@ -40,7 +67,13 @@ int main()
     for(int i=0;i<n;i++){
         visited[i]=false;
     }
-
-    print(edges,n,0,visited);
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<edges[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<endl;
+    printBFS(edges,n,0,visited);
     return 0;
 }

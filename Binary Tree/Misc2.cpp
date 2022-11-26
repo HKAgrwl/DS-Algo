@@ -3,6 +3,31 @@ using namespace std;
 #include "BinaryTreeUse.cpp"
 #include <queue>
 
+vector<vector<int>> levelOrder(BinaryTreeNode<int>* root) {
+        vector<vector<int>> ans;
+        queue<BinaryTreeNode<int>*> pendingNodes;
+        pendingNodes.push(root);
+        pendingNodes.push(NULL);
+        vector<int> interim;
+        while(!pendingNodes.empty()){
+            BinaryTreeNode<int>* current = pendingNodes.front();
+            pendingNodes.pop();
+            if(current==NULL && pendingNodes.empty()){
+                break;
+            }
+            else if(current==NULL){
+                ans.push_back(interim);
+                interim.clear();
+                pendingNodes.push(NULL);
+            }else{
+                interim.push_back(root->data);
+                if(root->left) pendingNodes.push(root->left);
+                if(root->right) pendingNodes.push(root->right);
+            }
+        }
+        return ans;
+    }
+
 void levelOrderTraversal(BinaryTreeNode<int>* root){
     queue<BinaryTreeNode<int>*> pendingNodes;
     pendingNodes.push(root);
@@ -102,13 +127,14 @@ void createBST(int n){
 
 int main()
 {
-    int a,b;
-    cin>>a>>b;
+    // int a,b;
+    // cin>>a>>b;
     BinaryTreeNode<int>* root = takeInputLevelwise();
     // insertDup(root);
     // levelOrderTraversal(root);
-    BinaryTreeNode<int>* lca = Lca(root,a,b);
-    cout<<lca->data;
+    // BinaryTreeNode<int>* lca = Lca(root,a,b);
+    vector<vector<int>> x = levelOrder(root);
+    // cout<<lca->data;
     // zigzag(root);
     return 0;
 }

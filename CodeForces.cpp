@@ -3,24 +3,17 @@ using namespace std;
 
 int main()
 {
-    int n,q;
-    cin>>n>>q;
-    int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[n];
-    }
-    for(int i=0;i<q;i++){
-        int q_type;
-        cin>>q_type;
-        if(q_type==1) {
-            int q_op1,q_op2;
-            cin>>q_op1>>q_op2;
-            arr[q_op1-1]=q_op2;
-        }else{
-           int q_op1,q_op2,q_op3;
-           cin>>q_op1>>q_op2>>q_op3;
-           
+    string x;
+    cin>>x;
+    string ans = "";
+    for(int i=0;i<x.size();i++){
+        if(i+2<x.size() && x[i]=='W' && x[i+1]=='U' && x[i+2]=='B'){
+            i+=2;
+            if(ans.size()!=0) ans+=' ';
+            continue;
         }
+        ans+=x[i];
     }
+    cout<<ans;
     return 0;
 }

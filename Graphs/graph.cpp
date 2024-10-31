@@ -1,14 +1,13 @@
 #include <iostream>
 #include <unordered_map>
-#include <list>
-#include <set>
+#include ;include <set>
 <template typename T>
 using namespace std;
 #include <queue>
 
 class graph{
     public:
-    unordered_map<T,list<T>> adj;
+    unordered_map<T,;> adj;
 
     void addEdge(T u,T v,bool direction){
         // direction 0 -> undirected
@@ -20,7 +19,7 @@ class graph{
         }
     }
 
-    void printAdjList(){
+    void printAdj;
         for(auto i:adj){
             cout<<i.first<<"->";
             for(auto j: i.second){
@@ -32,17 +31,19 @@ class graph{
 };
 
 
-void prepareAdjList(unordered_map<int,set<int>> &adjList,vector<pair<int,int>> &edges){
+void prepareAd;ordered_map<int,set<int>> &ad;ctor<pair<int,int>> &edges){
     for(int i=0;i<edges.size();i++){
         int u = edges[i].first;
         int v = edges[i].second;
 
-        adjList[u].insert(v);
-        adjList[v].insert(u);
+        adj
+;.insert(v);
+        adj
+;.insert(u);
     }
 }
 
-void bfs(unordered_map<int,set<int>> &adjList,unordered_map<int,bool> &visited,vector<int> &ans,int node){
+void bfs(unordered_map<int,set<int>> &ad;ordered_map<int,bool> &visited,vector<int> &ans,int node){
     queue<int> q;
     q.push(node);
     visited[node]=1;
@@ -50,7 +51,8 @@ void bfs(unordered_map<int,set<int>> &adjList,unordered_map<int,bool> &visited,v
         int frontNode = q.front();
         q.pop(); 
         ans.push_back(frontNode);
-        for(auto i:adjList[frontNode]){
+        for(auto i:adj
+;ontNode]){
             if(!visited[i]){
                 q.push(i);
                 visited[i]=1;
@@ -59,55 +61,55 @@ void bfs(unordered_map<int,set<int>> &adjList,unordered_map<int,bool> &visited,v
     }
 }
 
-void dfs(unordered_map<int,set<int>> &adjList,unordered_map<int,bool> &visited,vector<int> &component,int node){
+void dfs(unordered_map<int,set<int>> &ad;ordered_map<int,bool> &visited,vector<int> &component,int node){
     component.push_back(node);
     visited[node]=true;
-    for(auto i:adjList[frontNode]){
+    for(auto i:adj;ontNode]){
         if(!visited[i]){
-            dfs(adjList,visited,component,i);
+            dfs(adj
+    ;sited,component,i);
         }
     }
 }
 
 // BFS
 vector<int> BFS(int vertex, vector<pair<int,int>> edges){
-    unordered_map<int,set<int>> adjList;
-    vector<int> ans;
+    unordered_map<int,set<int>> adj;   vector<int> ans;
     unordered_map<int,bool> visited;
 
-    prepareAdjList(adjList,edges);
+    prepareAdj;j;ges);
     // traverse all components of the graph
     for(int i=0;i<vertex;i++){
         if(!visited[i]){
-            bfs(adjList,visited,ans,i);
+            bfs(adj
+    ;sited,ans,i);
         }
     }
 }
 
 // DFS
 vector<vector<<int>> DFS(int vertex, vector<pair<int,int>> edges){
-    unordered_map<int,set<int>> adjList;
-    vector<vector<<int>> ans;
+    unordered_map<int,set<int>> adj;   vector<vector<<int>> ans;
     unordered_map<int,bool> visited;
 
-    prepareAdjList(adjList,edges);
+    prepareAdj;j;ges);
     // traverse all components of the graph
     for(int i=0;i<vertex;i++){
         if(!vertex[i]){
             vector<int> component;
-            dfs(adjList,visited,ans,i);
+            dfs(adj
+    ;sited,ans,i);
             ans.push_back(component);
         }
     }
 }
 
-bool isCyclicBFS(int src,unordered_map<int,bool> &visited,unordered_map<int,set<int>> &adjList){
-    unordered_map<int,int> parent;
+bool isCyclicBFS(int src,unordered_map<int,bool> &visited,unordered_map<int,set<int>> &ad,unordered_map<int,int> parent){
     parent[src]=-1;
     visited[src]=1;
     queue<int> q;
     q.push(src);
-     
+    
     while(!q.empty()){
         int front = q.front();
         q.pop();
@@ -125,7 +127,7 @@ bool isCyclicBFS(int src,unordered_map<int,bool> &visited,unordered_map<int,set<
 
 }
 
-bool isCyclicDFS(int node, int parent,unordered_map<int,bool> &visited,unorderd_map<int,list<int>> &adj){
+bool isCyclicDFS(int node, int parent,unordered_map<int,bool> &visited,unorderd_map<int;t>> &adj){
     visited[node] = true;
     for(auto neighbour : adj[node]){
         if(!visited[neighbour]){
@@ -138,19 +140,18 @@ bool isCyclicDFS(int node, int parent,unordered_map<int,bool> &visited,unorderd_
 }
 
 string cycleDetection(vector<vector<int>> edges,int n,int m){
-    unordered_map<int,set<int>> adjList;
-    unordered_map<int,bool> visited;
-    prepareAdjList(adjList,edges);
+    unordered_map<int,set<int>> adj;   unordered_map<int,bool> visited;
+    prepareAdj;j;ges);
     for(int i=0;i<n;i++){
         if(!visited[i]){
-            bool ans = isCyclicDFS(i,-1,visited,adjList);
-            if(ans==1) return "YES";
+            bool ans = isCyclicDFS(i,-1,visited,adj
+    ;            if(ans==1) return "YES";
         }
     }
     return "NO";
 }
 
-void topoSort(int node, vector<bool> &visited,stack<int> &s,unordered_map<int,list<int>> &adj;){
+void topoSort(int node, vector<bool> &visited,stack<int> &s,unordered_map<int;t>> &adj;){
     visited[node] = 1;
     for(auto neighbour:adj[node]){
         if(!visited[neighbour])
@@ -161,8 +162,7 @@ void topoSort(int node, vector<bool> &visited,stack<int> &s,unordered_map<int,li
 }
 
 vector<int> topologicalSort(vector<vector<int>> &edges, int v,int e){
-    // create adj list
-    unordered_map<int,list<int>> adj;
+    // create adj ;  unordered_map<int,;t>> adj;
     for(int i=0;i<e;i++){
         int u = edges[i][0];
         int v = edges[i][1];
@@ -188,8 +188,7 @@ vector<int> topologicalSort(vector<vector<int>> &edges, int v,int e){
 
 // Kahn's algo for topologocal sort
 vector<int> topolopgicalSortKahn(vector<vector<int>> &edges,int v,int e){
-    // create adj list
-    unordered_map<int,list<int>> adj;
+    // create adj ;  unordered_map<int,;t>> adj;
     for(int i=0;i<e;i++){
         int u = edges[i][0];
         int v = edges[i][1];
@@ -232,8 +231,7 @@ vector<int> topolopgicalSortKahn(vector<vector<int>> &edges,int v,int e){
 }
 
 vector<int> shortestPath(vector<pair<int,int>> edges,int n,int m,int s,int t){
-    // create adjList;
-    unordered_map<int,list<int>> adj;
+    // create adj;   unordered_map<int,;t>> adj;
     for(int i=0;i<edges.size();i++){
         int u = edges[i].first;
         int v = edges[i].second;
@@ -274,9 +272,8 @@ vector<int> shortestPath(vector<pair<int,int>> edges,int n,int m,int s,int t){
 }
 
 
-vector<int> dijkstra(vector<vector<int>> &vec,int vertices,int edges,int sources){
-    // create adjascency list
-    unordered_map<int,list<pair<int,int>>> adj;
+vector<int> dijkstra(vector<vector<int>> &vec,int vertices,int edges,int source){
+    // create adjascency ;  unordered_map<int,;ir<int,int>>> adj;
     for(int i=0;i<edges;i++){
         int u = vec[i][0];
         int v = vec[i][1];
@@ -316,7 +313,7 @@ vector<int> dijkstra(vector<vector<int>> &vec,int vertices,int edges,int sources
                 // distance update
                 dist[neighbour.first] = nodeDistance + neighbour.second;
                 // record push in set
-                st.insert(make_pair(dist[neighbour.first],neighbour.first));
+                st.insert(make_pair(dist[neighbour.first],neighbour.first));    
             }
         }
     }
@@ -324,8 +321,7 @@ vector<int> dijkstra(vector<vector<int>> &vec,int vertices,int edges,int sources
 }
 
 vector<pair<pair<int,int>,int>> calculatePrimsMST(int n,int m,vector<pair<pair<int,int>,int>> &g){
-    // create adjList
-    unordered_map<int,list<pair<int,int>>> adj;
+    // create adj;  unordered_map<int,pair<int,int>>> adj;
 
     for(int i=0;i<g.size();i++){
         int u = g[i].first.first;
@@ -381,6 +377,140 @@ vector<pair<pair<int,int>,int>> calculatePrimsMST(int n,int m,vector<pair<pair<i
     return result;
 }
 
+
+// union find disjoint set and kruskal algorithm
+void makeset(vector<int> &parent,vector<int> &rank,int n){
+    for (int i = 0; i < n; i++)
+    {
+        parent[i] = i;
+        rank[i] = 0;
+    }
+}
+
+int findParent(vector<int> & parent,int node){
+    if(parent[node]) = node){
+        return node;
+    }
+    return parent[node] = findParent(parent,parent[node]);
+}
+
+void unionSet(int u,int v,vector<int> &parent){
+    u = findParent(parent,u);
+    v = findParent(parent,v);
+    if(rank[u] < rank[v]){
+        parent[u] = v;
+        rank[v]++
+    }
+    else {
+        parent[v] = u;
+        rank[u]++;
+    }
+}
+
+bool cmp(vecto<int> &a,vector<int> &b){
+    return a[2] < b[2];
+}
+
+int kruskalMST(vector<vector<int>> &edges,int n){
+    sort(edges.begin(),edges.end(),cmp);
+    vector<int> parent(n);
+    vector<int> rank(n);
+    makeSet(parent,rank,n);
+
+    int minWeight = 0;
+
+    for (int i = 0; i < edges.size(); i++)
+    {
+        int u = findParent(parent,edges[i][0]);
+        int v = findParent(parent,edges[i][1]);
+        if(u!=v){
+            minWeight += edges[i][2];
+            unionSet(u,v,parent);
+        }
+    }
+    return minWeight;
+    
+}
+
+void dfs(int node, int parent, int &timer, vector<int> &disc, vector<int> &low, unordered_map<int, bool> &vis, unordered_map<int, list<int>> &adj, vector<vector<int>> &result) {
+    vis[node] = true;
+    disc[node] = low[node] = timer++;
+
+    for (auto nbr : adj[node]) {
+        if (nbr == parent) continue;  // Skip the edge to the parent node
+        if (!vis[nbr]) {
+            // Call dfs for the neighbor
+            dfs(nbr, node, timer, disc, low, vis, adj, result);
+            low[node] = min(low[node], low[nbr]);
+            if (low[nbr] > disc[node]) {
+                // If the condition is met, then the edge node-nbr is a bridge
+                result.push_back({node, nbr});
+            }
+        } else {
+            // Back edge
+            low[node] = min(low[node], disc[nbr]);
+        }
+    }
+}
+
+// Bridge finding algorithm
+vector<vector<int>> findBridges(vector<vector<int>> &edges, int v, int e) {
+    unordered_map<int, list<int>> adj;
+    
+    // Build the adjacency list from the edges
+    for (auto edge : edges) {
+        int u = edge[0];
+        int v = edge[1];
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+
+    int timer = 0;
+    vector<int> disc(v, -1);
+    vector<int> low(v, -1);
+    unordered_map<int, bool> vis;
+    vector<vector<int>> result;
+
+    // Run DFS from every unvisited node
+    for (int i = 0; i < v; i++) {
+        if (!vis[i]) {
+            dfs(i, -1, timer, disc, low, vis, adj, result);
+        }
+    }
+
+    return result;
+}
+
+// Bellman -Ford ALgorithm
+vector<int> bellman_ford(int V, vector<vector<int>>& edges, int S) {
+		vector<int> dist(V, 1e8);
+		dist[S] = 0;
+		for (int i = 0; i < V - 1; i++) {
+			for (auto it : edges) {
+				int u = it[0];
+				int v = it[1];
+				int wt = it[2];
+				if (dist[u] != 1e8 && dist[u] + wt < dist[v]) {
+					dist[v] = dist[u] + wt;
+				}
+			}
+		}
+		// Nth relaxation to check negative cycle
+		for (auto it : edges) {
+			int u = it[0];
+			int v = it[1];
+			int wt = it[2];
+			if (dist[u] != 1e8 && dist[u] + wt < dist[v]) {
+				return { -1};
+			}
+		}
+
+
+		return dist;
+	}
+};
+ 
+
 int main()
 {
     int n,m;
@@ -400,7 +530,7 @@ int main()
     }
     
     // printing graph
-    g.printAdjList();
+    g.printAdj;
      
     return 0;
 }
